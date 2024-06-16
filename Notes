@@ -9,3 +9,40 @@ How to overcome overfitting in sequence classification model ?
 
 
 Training Parameters
+
+
+
+
+Q How to make predictions using only bertforsequence fine tuned model
+
+Ans
+roberta_model2=RobertaForSequenceClassification.from_pretrained("roberta-large-seq-token-classification/All_categories")
+
+# Sample input text
+texts=[(i) for i in test_df["V_BIOGRAPHY_repo"].values]
+
+# Tokenize and encode the text
+inputs = roberta_tokenizer(texts, return_tensors="pt", padding=True, truncation=True, max_length=512)
+input_ids = inputs['input_ids']
+attention_mask = inputs['attention_mask']
+outputs = roberta_model2(input_ids[:10], attention_mask=attention_mask[:10])
+
+# Put the model in evaluation mode
+# roberta_model2.eval()
+
+# Disable gradient calculations for prediction
+ with torch.no_grad():
+    outputs = roberta_model2(input_ids, attention_mask=attention_mask)
+# Get the logits
+logits = outputs.logits
+
+# Convert logits to predicted class labels
+predictions = torch.argmax(logits, dim=-1)
+
+# Assuming you have a list of class labels
+class_labels = [0,1]  # Replace with your actual class labels
+
+# Convert predictions to class labels
+predicted_labels = [class_labels[prediction] for prediction in predictions]
+
+print(predicted_labels)
