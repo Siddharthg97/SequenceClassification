@@ -1,3 +1,11 @@
 How to overcome overfitting in sequence classification model ?
 1) classweights introduction in cost/loss function i.e customized loss function
 2)  
+
+
+
+
+
+
+
+Training Parameters
