@@ -6,6 +6,12 @@ How to overcome overfitting in sequence classification model ?
 
 
 
+PEFT 
+1)Lora - Low rank adaptation 
+https://huggingface.co/docs/peft/en/tutorial/peft_model_config
+https://medium.com/@manyi.yim/more-about-loraconfig-from-peft-581cf54643db
+https://github.com/huggingface/peft?tab=readme-ov-file#--peft
+
 
 
 Training Parameters
